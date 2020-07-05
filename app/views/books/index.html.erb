@@ -1,1 +1,32 @@
-Books all
+<div class="container">
+    <div class="row">
+        <%# <%= render 'users/userinfo', users: @users %> %>
+        <%= render 'books/newbook' %>
+    </div>
+
+        <div class="col-xs-9">
+            <h2>Books</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Title</th>
+                        <th>Opinion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%# ここにUsers繰り返し  %>
+                    <% @books.each do |book| %>
+                        <tr>
+                            <%# <td><%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", class: "img-circle pull-left profile-thumb"%></td>  %>
+                            <td><%= book.title %></td>
+                            <td><%= book.body %></td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
