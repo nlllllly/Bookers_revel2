@@ -1,0 +1,65 @@
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-3">
+            <h2>User info</h2>
+            <%# <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", class: "img-circle pull-left profile-thumb" %> %>
+            <table class="table" >
+                <tbody>
+                    <tr>
+                        <th>name</th>
+                        <th><%= @user.name %></th>
+                    </tr>
+                    <tr>
+                        <th>introduction</th>
+                        <th></th>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="row">
+                <%= link_to '', edit_user_path(current_user), class:"col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+            </div>
+            <h2>New book</h2>
+            <%# 本作成のフォーム %>
+            <%# <% form_for(@book) do |f| %> %>
+                <div class="field">
+                    <%# <%= f.label :title<br /> %> %>
+                    <%# <%= f.text_field :title %> %>
+                </div>
+                <div class="field">
+                    <%# <%= f.label :opinion<br /> %> %>
+                    <%# <%= f.text_field :opinion %> %>
+                </div>
+                <div class="action">
+                    <%# <%= f.submmit 'Create Book', class:"btn btn-info" %> %>
+                </div>
+            <%# <% end %> %>
+
+
+        </div>
+        <div class="col-xs-9">
+            <h2>Users</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>image</th>
+                        <th>name</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%# ここにUsers繰り返し  %>
+                    <%# <% %> %>
+                        <tr>
+                            <td>あ</td>
+                            <td>い</td>
+                            <td>う</td>
+                        </tr>
+                    <%# <% end %> %>
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+</div>

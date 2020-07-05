@@ -9,18 +9,18 @@ class ApplicationController < ActionController::Base
     end
       
       #アカウント編集後のリダイレクト先
-    # def after_update_path_for(resource)
-    #     redirect_to user_path
-    # end
+    def after_update_path_for(resource)
+      user_path(resource.id)
+    end
 
     #ログイン後のリダイレクト先
     def after_sign_in_path_for(resource)
       user_path(resource.id)
     end 
 
-    #ログアウト後のリダイレクト先
+    # ログアウト後のリダイレクト先
     # def after_sign_out_path_for(resource)
-    #     redirect_to user_path
+    #     root_path
     # end 
 
     protected
