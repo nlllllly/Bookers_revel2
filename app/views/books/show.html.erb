@@ -1,73 +1,39 @@
-<div class="container">
-    <%# 各通知の表示 %>
-    <p><%= notice %></p>
-    <div class="row">
-        <div class="col-xs-3">
-            <h2>User info</h2>
-            <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", class: "img-circle pull-left profile-thumb" %>
-            <table class="table" >
-                <tbody>
-                    <tr>
-                        <th>name</th>
-                        <th><%= @user.name %></th>
-                    </tr>
-                    <tr>
-                        <th>introduction</th>
-                        <th><%= @user.introduction %></th>
-                    </tr>
-                </tbody>
-            </table>
-        <div class="row">
-            <%= link_to '', edit_user_path(current_user), class:"col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
-        </div>
 
-        <h2>New book</h2>
-            <%# エラー表示する %>
-            <%= form_for(@book_new) do |f| %>
-                <div class="field row">
-                    <%= f.label :title %>
-                    <%= f.text_field :title, class:"col-xs-12 book_title" %>
-                </div>
-                <div class="field row">
-                    <%= f.label :opinion %>
-                    <%= f.text_area :body, class:"col-xs-12 book_body" %>
-                </div>
-                <div class="actions row">
-                    <%= f.submit 'Create Book', class:"btn btn-primary col-xs-12" %>
-                </div>
-            <% end %>
-        </div>
+<%# 共通部品 _showside %>
+<%= render 'layouts/showside', user: @user %>
 
 
         <div class="col-xs-9">
-                    <h2>Book detail</h2>
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <%= link_to user_path(@book.user_id) do %>
-                                        <%= attachment_image_tag @book.user, :profile_image, :fill, 40, 40, fallback: "no_image-icon.jpg" %>
-                                        <%= @book.user.name %>
-                                    <% end %>
-                                </td>
-                                <td>
-                                    <%= link_to book_path(@book.id) do %>
-                                        <%= @book.title %>
-                                    <% end %>
-                                </td>
-                                <td><%= @book.body %></td>
-                                
-                                <% if @book.user == current_user %>
-                                    <td>
-                                        <%= link_to "Edit", edit_book_path(@book.id), class:"btn-sm btn-success" %>
-                                    </td>
-                                    <td>
-                                        <%= link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn-sm btn-danger" %>
-                                    </td>
-                                <% end %>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            <h2>Book detail</h2>
+            <%# Book詳細部分 %>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>
+                            <%= link_to user_path(@book.user_id) do %>
+                                <%= attachment_image_tag @book.user, :profile_image, :fill, 40, 40, fallback: "no_image-icon.jpg" %>
+                                <%= @book.user.name %>
+                            <% end %>
+                        </td>
+                        <td>
+                            <%= link_to book_path(@book.id) do %>
+                                <%= @book.title %>
+                            <% end %>
+                        </td>
+                        <td><%= @book.body %></td>
+                        
+                        <% if @book.user == current_user %>
+                            <td>
+                                <%= link_to "Edit", edit_book_path(@book.id), class:"btn-sm btn-success" %>
+                            </td>
+                            <td>
+                                <%= link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn-sm btn-danger" %>
+                            </td>
+                        <% end %>
+                    </tr>
+                </tbody>
+            </table>
+
         </div>
+    </div>
+</div>

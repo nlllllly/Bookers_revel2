@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
-    before_action :authenticate_user!, except: [:index]
+    # 全てのページへのログイン前アクセスを禁止する。（実際には、home_controllerだけindexを開けてるからhomeには行ける！）
+    before_action :authenticate_user!
     # ユーザ登録・ログイン認証が行われる前に、「configure_permitted_parameters」を実行する！
     before_action :configure_permitted_parameters, if: :devise_controller?
 
@@ -7,12 +8,6 @@ class ApplicationController < ActionController::Base
     def after_sign_up_path_for(resource)
       user_path(resource.id)
     end
-    
-    #アカウント編集後のリダイレクト先
-    # いらないみたい
-    # def after_update_path_for(resource)
-    #   user_path(resource.id)
-    # end
     
     #ログイン後のリダイレクト先
     def after_sign_in_path_for(resource)

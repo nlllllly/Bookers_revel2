@@ -6,7 +6,6 @@ class BooksController < ApplicationController
     def show
         @book = Book.find(params[:id])
         @user = @book.user
-        # 本来はここに @book = Book.newを入れてcreateできればいいんじゃん？
         @book_new = Book.new
     end
     def create
