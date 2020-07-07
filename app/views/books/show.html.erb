@@ -1,6 +1,6 @@
-
-You have creatad book successfully.
 <div class="container">
+    <%# 各通知の表示 %>
+    <p><%= notice %></p>
     <div class="row">
         <div class="col-xs-3">
             <h2>User info</h2>
@@ -9,11 +9,11 @@ You have creatad book successfully.
                 <tbody>
                     <tr>
                         <th>name</th>
-                        <th><%= current_user.name %></th>
+                        <th><%= @user.name %></th>
                     </tr>
                     <tr>
                         <th>introduction</th>
-                        <th><%= current_user.introduction %></th>
+                        <th><%= @user.introduction %></th>
                     </tr>
                 </tbody>
             </table>
@@ -23,7 +23,7 @@ You have creatad book successfully.
 
         <h2>New book</h2>
             <%# エラー表示する %>
-            <%= form_for(@book) do |f| %>
+            <%= form_for(@book_new) do |f| %>
                 <div class="field row">
                     <%= f.label :title %>
                     <%= f.text_field :title, class:"col-xs-12 book_title" %>
@@ -57,12 +57,12 @@ You have creatad book successfully.
                                 </td>
                                 <td><%= @book.body %></td>
                                 
-                                <% if @book.user_id == current_user.id %>
+                                <% if @book.user == current_user %>
                                     <td>
-                                        <%= link_to "Edit", edit_book_path(@book.id), style:"btn-sm btn-success" %>
+                                        <%= link_to "Edit", edit_book_path(@book.id), class:"btn-sm btn-success" %>
                                     </td>
                                     <td>
-                                        <%= link_to "Delete", book_path(@book.id), method:'delete', style:"btn-sm btn-danger" %>
+                                        <%= link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn-sm btn-danger" %>
                                     </td>
                                 <% end %>
                             </tr>

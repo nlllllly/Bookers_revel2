@@ -1,19 +1,19 @@
 <div class="container">
+    <%# 各通知の表示 %>
+    <p><%= notice %></p>
     <div class="row">
         <div class="col-xs-3">
-            <%# ここにエラ〜メッセージの通知を出す。 %>
-            
             <h2>User info</h2>
             <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg", class: "img-circle pull-left profile-thumb" %>
             <table class="table" >
                 <tbody>
                     <tr>
                         <th>name</th>
-                        <th><%= current_user.name %></th>
+                        <th><%= @user.name %></th>
                     </tr>
                     <tr>
                         <th>introduction</th>
-                        <th><%= current_user.introduction %></th>
+                        <th><%= @user.introduction %></th>
                     </tr>
                 </tbody>
             </table>
@@ -23,7 +23,7 @@
 
         <h2>New book</h2>
             <%# エラー表示する %>
-            <%= form_for(@book) do |f| %>
+            <%= form_for(@book_new) do |f| %>
                 <div class="field row">
                     <%= f.label :title %>
                     <%= f.text_field :title, class:"col-xs-12 book_title" %>
@@ -33,7 +33,7 @@
                     <%= f.text_area :body, class:"col-xs-12 book_body" %>
                 </div>
                 <div class="actions row">
-                    <%= f.submit 'Create Book', class:"btn btn-primary col-xs-12" %>
+                    <%= f.submit class:"btn btn-primary col-xs-12" %>
                 </div>
             <% end %>
         </div>
@@ -52,15 +52,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                     <% @books.each do |book| %>
+                    <% @books.each do |book| %>
                         <tr>
                             <td>
-                                <%= link_to user_path do %>
+                                <%= link_to user_path(@user.id) do %>
                                     <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "no_image-icon.jpg" %>
                                 <% end %>
                             </td>
                             <td>
-                                <%= link_to book_path do %>
+                                <%= link_to book_path(book.id) do %>
                                     <%= book.title %>
                                 <% end %>
                             </td>
