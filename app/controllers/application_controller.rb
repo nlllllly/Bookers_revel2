@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-    # 全てのページへのログイン前アクセスを禁止する。（実際には、home_controllerだけindexを開けてるからhomeには行ける！）
+    # 全てのページへのログイン前アクセスを禁止する。（実際には、homeとabout_controllerだけindexを開けてるからhomeには行ける！）
     before_action :authenticate_user!
     # ユーザ登録・ログイン認証が行われる前に、「configure_permitted_parameters」を実行する！
     before_action :configure_permitted_parameters, if: :devise_controller?
